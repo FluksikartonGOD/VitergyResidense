@@ -4,7 +4,25 @@ import { config } from './config.js'
 export default defineNuxtConfig({
   compatibilityDate: '2026-03-03',
   devtools: { enabled: true },
-  modules: ['@nuxt/icon', '@nuxtjs/tailwindcss', '@vueuse/nuxt', '@nuxt/fonts'],
+  vite: {
+    optimizeDeps: {
+      include: [
+        '@vue/devtools-core',
+        '@vue/devtools-kit',
+      ]
+    }
+  },
+  modules: ['@nuxt/icon', '@nuxtjs/tailwindcss', '@vueuse/nuxt', '@nuxt/fonts', '@nuxtjs/i18n', '@pinia/nuxt'],
+  i18n: {
+    locales: [
+      { code: 'bg', iso: 'bg-BG', file: 'bg.js' },
+      { code: 'en', iso: 'en-US', file: 'en.js' },
+    ],
+    lazy: true,
+    langDir: 'locales',
+    defaultLocale: 'bg',
+    strategy: 'prefix_except_default',
+  },
   css: ['~/assets/css/main.css'],
   tailwindcss: {
     cssPath: '~/assets/css/tailwind.css',

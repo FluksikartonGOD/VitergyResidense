@@ -4,98 +4,46 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
         <!-- Logo & Description -->
         <div>
-          <NuxtLink
-            to="/"
-            class="inline-block mb-6"
-          >
+          <NuxtLink :to="localePath('/')" class="inline-block mb-6">
             <img
               src="/images/nav-logo.png"
-              alt="PrimeWin"
+              alt="Vitergy Residense"
               class="h-8 w-auto filter brightness-0 invert"
             />
           </NuxtLink>
           <p class="text-gray-400 text-sm leading-relaxed mb-6">
-            Професионални футболни прогнози за сериозни играчи. Печелете всеки
-            ден с нашите анализи и съвети.
+            {{ $t('index.welcome') }}
           </p>
           <div class="flex gap-4">
-            <!-- Social placeholders could go here -->
+            <!-- Social placeholders -->
           </div>
         </div>
 
         <!-- Quick Links -->
         <div>
-          <h3 class="text-lg font-bold mb-6 text-primary">Бързи Връзки</h3>
+          <h3 class="text-lg font-bold mb-6 text-green-500">Бързи Връзки / Quick Links</h3>
           <ul class="space-y-3">
-            <li>
+            <li v-for="link in mainNavLinks" :key="link.to">
               <NuxtLink
-                to="/"
+                :to="localePath(link.to)"
                 class="text-gray-400 hover:text-white transition"
               >
-                Начало
-              </NuxtLink>
-            </li>
-            <li>
-              <NuxtLink
-                to="/bezplatni-prognozi"
-                class="text-gray-400 hover:text-white transition"
-              >
-                Безплатни Прогнози
-              </NuxtLink>
-            </li>
-            <li>
-              <NuxtLink
-                to="/premium-prognozi"
-                class="text-gray-400 hover:text-white transition"
-              >
-                Premium Прогнози
-              </NuxtLink>
-            </li>
-            <li>
-              <NuxtLink
-                to="/vip-prognozi"
-                class="text-gray-400 hover:text-white transition"
-              >
-                VIP Прогнози
-              </NuxtLink>
-            </li>
-            <li>
-              <NuxtLink
-                to="/abonamenti"
-                class="text-gray-400 hover:text-white transition"
-              >
-                Абонаменти
-              </NuxtLink>
-            </li>
-            <li>
-              <NuxtLink
-                to="/kontakti"
-                class="text-gray-400 hover:text-white transition"
-              >
-                Контакти
+                {{ $t(link.labelKey) }}
               </NuxtLink>
             </li>
           </ul>
         </div>
 
-        <!-- Account -->
+        <!-- Buildings -->
         <div>
-          <h3 class="text-lg font-bold mb-6 text-primary">Потребител</h3>
+          <h3 class="text-lg font-bold mb-6 text-green-500">{{ $t('nav.buildings') }}</h3>
           <ul class="space-y-3">
-            <li>
+            <li v-for="subLink in mainNavLinks.find(l => l.to === '/sgradi')?.submenuItems" :key="subLink.to">
               <NuxtLink
-                to="/login"
+                :to="localePath(subLink.to)"
                 class="text-gray-400 hover:text-white transition"
               >
-                Вход
-              </NuxtLink>
-            </li>
-            <li>
-              <NuxtLink
-                to="/register"
-                class="text-gray-400 hover:text-white transition"
-              >
-                Регистрация
+                {{ $t(subLink.labelKey) }}{{ subLink.labelSuffix }}
               </NuxtLink>
             </li>
           </ul>
@@ -103,14 +51,14 @@
 
         <!-- Legal -->
         <div>
-          <h3 class="text-lg font-bold mb-6 text-primary">Информация</h3>
+          <h3 class="text-lg font-bold mb-6 text-green-500">Информация / Information</h3>
           <ul class="space-y-3">
             <li>
               <NuxtLink
                 to="/kontakti"
                 class="text-gray-400 hover:text-white transition"
               >
-                Контакти
+                {{ $t('nav.contact') }}
               </NuxtLink>
             </li>
             <li>
@@ -118,38 +66,23 @@
                 to="/za-nas"
                 class="text-gray-400 hover:text-white transition"
               >
-                За Нас
-              </NuxtLink>
-            </li>
-            <li>
-              <NuxtLink
-                to="/obshti-usloviya"
-                class="text-gray-400 hover:text-white transition"
-              >
-                Общи Условия
-              </NuxtLink>
-            </li>
-            <li>
-              <NuxtLink
-                to="/deklaratsiya-za-poveritelnost"
-                class="text-gray-400 hover:text-white transition"
-              >
-                Декларация за поверителност
+                {{ $t('nav.about') }}
               </NuxtLink>
             </li>
           </ul>
         </div>
       </div>
 
-      <div
-        class="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm"
-      >
+      <div class="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
         <p>
-          &copy; {{ new Date().getFullYear() }} PrimeWin. Всички права запазени.
+          &copy; {{ new Date().getFullYear() }} Vitergy Residense. {{ $t('footer.rights') }}
         </p>
       </div>
     </div>
   </footer>
 </template>
 
-<script setup></script>
+<script setup>
+import { mainNavLinks } from '~/utils/navigation'
+const localePath = useLocalePath()
+</script>

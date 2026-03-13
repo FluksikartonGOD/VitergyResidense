@@ -30,13 +30,13 @@
               нови прогнози!
             </p>
             <div class="flex flex-wrap items-center gap-6 mt-4">
-              <NuxtLink
+              <!-- <NuxtLink
                 class="px-[30px] py-[14px] md:px-[40px] md:py-[16px] text-[16px] md:text-[18px] font-bold border border-primary/50 bg-primary/10 hover:bg-primary/20 text-primary transition-all duration-300 shadow-[0_0_15px_rgba(203,242,48,0.15)] hover:shadow-[0_0_25px_rgba(203,242,48,0.3)] backdrop-blur-sm transform hover:-translate-y-0.5"
                 style="border-radius: 20px 100px 100px 20px"
                 to="/register"
               >
                 СТАНИ ЧЛЕН
-              </NuxtLink>
+              </NuxtLink> -->
             </div>
           </div>
         </div>
