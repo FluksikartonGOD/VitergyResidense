@@ -1,0 +1,99 @@
+:root {
+    --nav-height: 90px;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: Inter, sans-serif;
+    font-weight: 300;
+}
+
+
+
+.app-layout {
+    padding-top: var(--nav-height);
+}
+
+.app-nav .container > div {
+    height: var(--nav-height);
+    color: white;
+    font-weight: 700;
+}
+
+.app-page {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+
+    &.index-page {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    @screen lg {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+}
+
+.index-page header {
+    display: flex;
+    align-items: center;
+    background-image: url('/public/images/header-background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: white;
+}
+
+.primary-gradient {
+    background: linear-gradient(to bottom, rgba(203, 242, 48, 0.2) 20%, #CBF230 100%);
+}
+
+.primary-gradient-right {
+    background: linear-gradient(to right, #CBF230 0%, rgba(203, 242, 48, 0.2) 100%);
+}
+
+.black-gradient-right {
+    background: linear-gradient(to right, #0E1014 0%, rgba(255, 255, 255, 0.2) 100%);
+}
+
+.primary-white-gradient {
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.2) 100%);
+}
+
+.shadow-card-dark {
+    box-shadow: 0 0 15px 3px #0c0c0c;
+}
+
+.shadow-chip-dark {
+    box-shadow: 0 0 3px 1px #0c0c0c;
+}
+
+.shadow-card-dark:hover {
+    box-shadow: 0 0 20px 5px #0c0c0c;
+}
+
+/* Make calendar icon white in dark mode */
+input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+}
+
+/* Active Navigation Links styling */
+.app-nav a.router-link-active {
+    color: #CBF230;
+}
+
+/* Preserve specific button/link colors when active */
+.app-nav a.router-link-active.bg-primary {
+    color: #16171B;
+}
+
+.app-nav a.router-link-active.bg-green-600 {
+    color: white;
+}
+
+.app-nav a.router-link-active.text-red-500 {
+    color: #ef4444;
+}

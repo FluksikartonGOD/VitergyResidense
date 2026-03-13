@@ -1,0 +1,30 @@
+# Nginx configuration for primewin.eu
+
+# Redirect www to non-www securely (optional but recommended for SEO)
+server {
+    listen 80;
+    listen [::]:80;
+    server_name www.primewin.eu;
+    return 301 $scheme://primewin.eu$request_uri;
+}
+
+server {
+    listen 80;
+    listen [::]:80;
+    server_name primewin.eu;
+
+    # The Nuxt application running via PM2 is listening on port 3000 locally
+    location / {
+        proxy_pass http://127.0.0.1:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+        
+        # Pass real IPs to the application
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
