@@ -1,1 +1,6 @@
-{ "index": { "title": "Начало", "welcome": "Добре дошли в Vitergy Residense" } }
+{
+  "index": {
+    "title": "Vitergy Residense",
+    "welcome": "Луксозен живот в хармония с природата"
+  }
+}

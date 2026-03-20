@@ -1,1 +1,6 @@
-{ "index": { "title": "Home", "welcome": "Welcome to Vitergy Residense" } }
+{
+  "index": {
+    "title": "Vitergy Residense",
+    "welcome": "Luxury living in harmony with nature"
+  }
+}

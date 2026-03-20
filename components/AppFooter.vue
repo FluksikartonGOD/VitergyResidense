@@ -4,12 +4,16 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
         <!-- Logo & Description -->
         <div>
-          <NuxtLink :to="localePath('/')" class="inline-block mb-6">
-            <img
-              src="/images/nav-logo.png"
-              alt="Vitergy Residense"
-              class="h-8 w-auto filter brightness-0 invert"
-            />
+          <NuxtLink
+            :to="localePath('/')"
+            class="flex-shrink-0 text-primary"
+          >
+            <!-- <img
+            src="/images/nav-logo.png"
+            alt="logo"
+            class="h-[25px] mb-[5px] md:mb-0 md:h-auto w-auto"
+          /> -->
+            <span class="text-xl font-bold">Vitergy Residense</span>
           </NuxtLink>
           <p class="text-gray-400 text-sm leading-relaxed mb-6">
             {{ $t('index.welcome') }}
@@ -21,9 +25,14 @@
 
         <!-- Quick Links -->
         <div>
-          <h3 class="text-lg font-bold mb-6 text-green-500">Бързи Връзки / Quick Links</h3>
+          <h3 class="text-lg font-bold mb-6 text-primary">
+            Бързи Връзки / Quick Links
+          </h3>
           <ul class="space-y-3">
-            <li v-for="link in mainNavLinks" :key="link.to">
+            <li
+              v-for="link in mainNavLinks"
+              :key="link.to"
+            >
               <NuxtLink
                 :to="localePath(link.to)"
                 class="text-gray-400 hover:text-white transition"
@@ -36,9 +45,15 @@
 
         <!-- Buildings -->
         <div>
-          <h3 class="text-lg font-bold mb-6 text-green-500">{{ $t('nav.buildings') }}</h3>
+          <h3 class="text-lg font-bold mb-6 text-primary">
+            {{ $t('nav.buildings') }}
+          </h3>
           <ul class="space-y-3">
-            <li v-for="subLink in mainNavLinks.find(l => l.to === '/sgradi')?.submenuItems" :key="subLink.to">
+            <li
+              v-for="subLink in mainNavLinks.find((l) => l.to === '/sgradi')
+                ?.submenuItems"
+              :key="subLink.to"
+            >
               <NuxtLink
                 :to="localePath(subLink.to)"
                 class="text-gray-400 hover:text-white transition"
@@ -51,7 +66,9 @@
 
         <!-- Legal -->
         <div>
-          <h3 class="text-lg font-bold mb-6 text-green-500">Информация / Information</h3>
+          <h3 class="text-lg font-bold mb-6 text-primary">
+            Информация / Information
+          </h3>
           <ul class="space-y-3">
             <li>
               <NuxtLink
@@ -73,9 +90,12 @@
         </div>
       </div>
 
-      <div class="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
+      <div
+        class="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm"
+      >
         <p>
-          &copy; {{ new Date().getFullYear() }} Vitergy Residense. {{ $t('footer.rights') }}
+          &copy; {{ new Date().getFullYear() }} Vitergy Residense.
+          {{ $t('footer.rights') }}
         </p>
       </div>
     </div>
@@ -83,6 +103,6 @@
 </template>
 
 <script setup>
-import { mainNavLinks } from '~/utils/navigation'
-const localePath = useLocalePath()
+  import { mainNavLinks } from '~/utils/navigation'
+  const localePath = useLocalePath()
 </script>

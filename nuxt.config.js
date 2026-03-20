@@ -6,13 +6,34 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   vite: {
     optimizeDeps: {
-      include: [
-        '@vue/devtools-core',
-        '@vue/devtools-kit',
-      ]
-    }
+      include: ['@vue/devtools-core', '@vue/devtools-kit'],
+    },
   },
-  modules: ['@nuxt/icon', '@nuxtjs/tailwindcss', '@vueuse/nuxt', '@nuxt/fonts', '@nuxtjs/i18n', '@pinia/nuxt'],
+  modules: [
+    '@nuxt/icon',
+    '@nuxtjs/tailwindcss',
+    '@vueuse/nuxt',
+    '@nuxt/fonts',
+    '@nuxtjs/i18n',
+    '@pinia/nuxt',
+  ],
+  icon: {
+    mode: 'svg',
+    provider: 'none', // don't call /api/_nuxt_icon
+    clientBundle: {
+      scan: true, // scans <Icon name="..."> in your components
+      includeCustomCollections: true, // include @iconify-json/* you installed
+      // optional: list icons if you build names dynamically:
+      icons: [
+        'mdi:close',
+        'mdi:menu-rounded',
+        'mdi:keyboard-arrow-down',
+        'circle-flags:en',
+        'circle-flags:bg',
+        'mdi:menu-rounded',
+      ],
+    },
+  },
   i18n: {
     locales: [
       { code: 'bg', iso: 'bg-BG', file: 'bg.js' },

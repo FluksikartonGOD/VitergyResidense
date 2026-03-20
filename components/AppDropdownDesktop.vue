@@ -1,21 +1,40 @@
 <template>
-  <div class="relative group" @mouseenter="isHovered = true" @mouseleave="isHovered = false">
-    <slot name="trigger" :isHovered="isHovered"></slot>
+  <div
+    ref="dropdownRef"
+    class="relative group"
+    @click.prevent="isHovered = !isHovered"
+  >
+    <slot
+      name="trigger"
+      :isHovered="isHovered"
+    ></slot>
     <div
       v-show="isHovered"
-      class="absolute top-full left-0 bg-darkSecond min-w-[200px] flex flex-col shadow-xl rounded-b-md overflow-hidden border border-gray-800 z-50"
+      @click.stop
+      class="absolute top-full left-0 bg-white min-w-[200px] flex flex-col overflow-hidden app-shadow z-50"
     >
-      <slot name="content" :close="closeDropdown"></slot>
+      <slot
+        name="content"
+        :close="closeDropdown"
+      ></slot>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+  import { ref } from 'vue'
+  import { onClickOutside } from '@vueuse/core'
 
-const isHovered = ref(false)
+  const isHovered = ref(false)
+  const dropdownRef = ref(null)
 
-const closeDropdown = () => {
-  isHovered.value = false
-}
+  const closeDropdown = () => {
+    isHovered.value = false
+  }
+
+  onClickOutside(dropdownRef, () => {
+    if (isHovered.value) {
+      isHovered.value = false
+    }
+  })
 </script>

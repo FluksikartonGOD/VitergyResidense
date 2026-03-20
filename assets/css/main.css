@@ -9,7 +9,9 @@ body {
     font-weight: 300;
 }
 
-
+main {
+    min-height: 100vh;
+}
 
 .app-layout {
     padding-top: var(--nav-height);
@@ -19,6 +21,10 @@ body {
     height: var(--nav-height);
     color: white;
     font-weight: 700;
+}
+
+.app-nav {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
 .app-page {
@@ -39,11 +45,11 @@ body {
 .index-page header {
     display: flex;
     align-items: center;
-    background-image: url('/public/images/header-background.jpg');
+    background-image: url('/public/images/full-res-1.webp');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    color: white;
+    min-height: 600px;
 }
 
 .primary-gradient {
@@ -62,8 +68,8 @@ body {
     background: linear-gradient(to right, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.2) 100%);
 }
 
-.shadow-card-dark {
-    box-shadow: 0 0 15px 3px #0c0c0c;
+.app-shadow {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
 .shadow-chip-dark {
@@ -81,19 +87,17 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
 }
 
 /* Active Navigation Links styling */
-.app-nav a.router-link-active {
-    color: #CBF230;
+.app-nav a.app-nav-link {
+    @apply px-6 border-b-4 border-transparent text-primary;
+}
+.app-nav a.app-nav-link.router-link-active {
+    @apply border-primary;
 }
 
-/* Preserve specific button/link colors when active */
-.app-nav a.router-link-active.bg-primary {
-    color: #16171B;
-}
+.app-nav .app-nav-mobile-link {
+    @apply py-2 text-primary;
 
-.app-nav a.router-link-active.bg-green-600 {
-    color: white;
-}
-
-.app-nav a.router-link-active.text-red-500 {
-    color: #ef4444;
+    &.router-link-active {
+        @apply bg-gray-800;
+    }
 }

@@ -1,21 +1,22 @@
 <template>
   <nav
-    class="app-nav fixed flex items-center bg-darkSecond h-[90px] top-0 left-0 right-0 z-10 text-white"
+    class="app-nav fixed flex items-center bg-dark h-[90px] top-0 left-0 right-0 z-10"
   >
     <div class="container mx-auto px-4">
       <div class="flex items-center justify-between lg:justify-center gap-8">
         <NuxtLink
           :to="localePath('/')"
-          class="flex-shrink-0"
+          class="flex-shrink-0 text-primary"
         >
-          <img
+          <!-- <img
             src="/images/nav-logo.png"
             alt="logo"
             class="h-[25px] mb-[5px] md:mb-0 md:h-auto w-auto"
-          />
+          /> -->
+          <span class="text-xl font-bold">Vitergy Residense</span>
         </NuxtLink>
 
-        <div class="hidden lg:flex items-center justify-center flex-1 gap-6">
+        <div class="hidden lg:flex items-center justify-center h-full flex-1">
           <template
             v-for="link in mainNavLinks"
             :key="link.to"
@@ -23,21 +24,24 @@
             <template v-if="!link.hasSubmenu">
               <NuxtLink
                 :to="localePath(link.to)"
-                class="hover:text-green-500 font-medium"
+                class="app-nav-link hover:text-primary font-medium h-full flex items-center justify-center"
               >
                 {{ $t(link.labelKey) }}
               </NuxtLink>
             </template>
-            <AppDropdownDesktop v-else>
+            <AppDropdownDesktop
+              v-else
+              class="h-full flex items-center justify-center"
+            >
               <template #trigger="{ isHovered }">
                 <NuxtLink
                   :to="localePath(link.to)"
-                  class="hover:text-green-500 font-medium inline-flex items-center gap-1 py-4"
+                  class="app-nav-link hover:text-primary font-medium inline-flex items-center gap-1 py-4 h-full flex items-center justify-center"
                 >
                   {{ $t(link.labelKey) }}
                   <Icon
                     name="material-symbols:keyboard-arrow-down"
-                    class="w-4 h-4 transition-transform duration-200"
+                    class="w-4 h-4 transition-transform duration-200 text-primary"
                     :class="{ 'rotate-180': isHovered }"
                   />
                 </NuxtLink>
@@ -48,7 +52,7 @@
                   :key="subLink.to"
                   @click="close"
                   :to="localePath(subLink.to)"
-                  class="px-4 py-3 hover:bg-gray-800 hover:text-green-500 transition-colors whitespace-nowrap"
+                  class="app-nav-link px-4 py-3 hover:bg-gray-800 hover:text-primary transition-colors whitespace-nowrap"
                 >
                   {{ $t(subLink.labelKey) }}{{ subLink.labelSuffix || '' }}
                 </NuxtLink>
@@ -60,7 +64,7 @@
         <div class="hidden lg:flex items-center">
           <button
             @click="toggleLanguage"
-            class="flex items-center gap-2 hover:opacity-80 transition-opacity bg-gray-800/50 px-3 py-1.5 rounded-full border border-gray-700"
+            class="flex items-center gap-2 hover:opacity-80 transition-opacity bg-primary px-3 py-1.5 rounded-full border border-primary"
           >
             <Icon
               :name="langIcon"
@@ -74,6 +78,7 @@
 
         <button
           class="h-[3rem] w-[3rem] mr-[-8px] lg:hidden bg-transparent flex items-center justify-center rounded-sm"
+          :class="mobileOpened ? 'text-primary' : 'text-white'"
           @click="mobileOpened = !mobileOpened"
         >
           <Icon
@@ -92,11 +97,9 @@
 
     <aside
       v-show="mobileOpened"
-      class="fixed top-[90px] h-[calc(100vh-90px)] left-0 right-0 bottom-0 bg-dark text-white z-40 overflow-y-auto"
+      class="fixed top-[90px] h-[calc(100vh-90px)] left-0 right-0 bottom-0 bg-dark z-40 overflow-y-auto"
     >
-      <div
-        class="container mx-auto px-4 py-8 flex flex-col gap-6 text-center text-xl font-bold"
-      >
+      <div class="py-8 flex flex-col gap-3 text-center text-xl font-bold">
         <template
           v-for="link in mainNavLinks"
           :key="link.to"
@@ -105,20 +108,16 @@
             <NuxtLink
               @click="mobileOpened = false"
               :to="localePath(link.to)"
-              class="hover:text-green-500"
+              class="app-nav-mobile-link hover:text-primary"
             >
               {{ $t(link.labelKey) }}
             </NuxtLink>
           </template>
           <AppDropdownMobile v-else>
             <template #trigger>
-              <NuxtLink
-                @click="mobileOpened = false"
-                :to="localePath(link.to)"
-                class="hover:text-green-500"
-              >
+              <span class="app-nav-mobile-link hover:text-primary">
                 {{ $t(link.labelKey) }}
-              </NuxtLink>
+              </span>
             </template>
             <template #content="{ close }">
               <NuxtLink
@@ -131,11 +130,7 @@
                   }
                 "
                 :to="localePath(subLink.to)"
-                class="hover:text-green-500 pb-2"
-                :class="{
-                  'border-b border-gray-800':
-                    idx !== link.submenuItems.length - 1,
-                }"
+                class="app-nav-mobile-link hover:text-primary pb-2"
               >
                 {{ $t(subLink.labelKey) }}{{ subLink.labelSuffix || '' }}
               </NuxtLink>
@@ -143,17 +138,17 @@
           </AppDropdownMobile>
         </template>
 
-        <div class="mt-8 pt-8 border-t border-gray-800 flex justify-center">
+        <div class="mt-8 pt-8 flex justify-center">
           <button
             @click="toggleLanguage"
-            class="flex items-center gap-3 hover:opacity-80 transition-opacity bg-gray-800 px-6 py-3 rounded-full"
+            class="flex items-center gap-3 hover:opacity-80 transition-opacity bg-gray-800 px-4 py-3 rounded-full"
           >
             <Icon
               :name="langIcon"
-              class="w-6 h-6 rounded-full"
+              class="w-5 h-5"
             />
             <span
-              class="text-lg font-bold uppercase tracking-widest text-gray-200"
+              class="text-sm leading-none font-bold uppercase tracking-widest text-gray-200"
             >
               {{ nextLang }}
             </span>

@@ -17,13 +17,13 @@ export default {
       },
       colors: {
         primary: {
-          DEFAULT: '#CBF230',
+          DEFAULT: '#ca9e67',
         },
         dark: {
-          DEFAULT: '#16171B',
+          DEFAULT: '#1f2937',
         },
         darkSecond: {
-          DEFAULT: '#0E1014',
+          DEFAULT: '#1f2937',
         },
         darkLigher: {
           DEFAULT: '#333A46',
