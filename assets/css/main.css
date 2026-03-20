@@ -25,18 +25,6 @@ body {
 
 .app-page {
     min-height: 100vh;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-
-    &.index-page {
-        padding-top: 0;
-        padding-bottom: 0;
-    }
-
-    @screen lg {
-        padding-top: 3rem;
-        padding-bottom: 3rem;
-    }
 }
 
 .index-page header {
@@ -144,6 +132,9 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
     transform-origin: 50% 50% -50vw;
     z-index: 1;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    /* Fix for differing page heights: force uniform viewport height during transition */
+    height: calc(100vh - var(--nav-height));
+    overflow: hidden;
 }
 
 .cube-leave-active {
@@ -153,6 +144,9 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
     transform-origin: 50% 50% -50vw;
     z-index: 1;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    /* Fix for differing page heights: force uniform viewport height during transition */
+    height: calc(100vh - var(--nav-height));
+    overflow: hidden;
 }
 
 @keyframes cube-enter-anim {
