@@ -9,7 +9,9 @@
       class="lg:absolute bottom-0 left-0 right-0 py-4 lg:py-8 bg-primary text-dark"
     >
       <div class="container mx-auto px-4">
-        <div class="relative flex justify-center w-full">
+        <div
+          class="relative flex justify-center items-center min-h-[45px] w-full"
+        >
           <Transition name="slide-up">
             <h1
               v-if="!intro"
@@ -92,6 +94,7 @@
     position: relative;
 
     svg {
+      display: block;
       width: 100%;
       max-width: 100%;
       height: auto;

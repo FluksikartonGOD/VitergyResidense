@@ -1,7 +1,7 @@
 <template>
   <div class="app-page building-page">
     <BuildingsOne v-model="selectedApartment" />
-    <div class="container flex flex-col mx-auto px-4 py-8">
+    <div class="container flex flex-col mx-auto px-4 pb-4">
       <ClientOnly>
         <div class="relative inline-flex mx-auto">
           <Transition name="slide-up">
@@ -13,11 +13,13 @@
           </Transition>
         </div>
       </ClientOnly>
-      <!-- <h1 class="text-4xl font-bold mb-4">{{ $t('nav.building') }} {{ id }}</h1>
-      <p class="text-lg">
-        Детайли за сградата ще бъдат добавени тук... / Details for the building
-        will be added here...
-      </p> -->
+      <h1 class="text-4xl font-bold mb-4 text-primary">lorem</h1>
+      <p class="text-lg text-dark">
+        Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+        accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
+        illo inventore veritatis et quasi architecto beatae vitae dicta sunt
+        explicabo.
+      </p>
     </div>
   </div>
 </template>

@@ -14,6 +14,17 @@
         </p>
       </div>
     </header>
+    <section>
+      <div class="container mx-auto px-4 pt-8 pb-4">
+        <h1 class="text-4xl font-bold mb-4 text-primary">lorem</h1>
+        <p class="text-lg text-dark">
+          Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+          accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae
+          ab illo inventore veritatis et quasi architecto beatae vitae dicta
+          sunt explicabo.
+        </p>
+      </div>
+    </section>
   </div>
 </template>
 
