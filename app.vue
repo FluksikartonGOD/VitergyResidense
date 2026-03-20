@@ -1,7 +1,7 @@
 <template>
   <div class="app-wrapper">
     <NuxtLayout>
-      <NuxtPage />
+      <NuxtPage :transition="{ name: 'cube', mode: '' }" />
     </NuxtLayout>
   </div>
 </template>
