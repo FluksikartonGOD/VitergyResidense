@@ -30,7 +30,7 @@ export default defineNuxtConfig({
         'mdi:keyboard-arrow-down',
         'circle-flags:en',
         'circle-flags:bg',
-        'mdi:menu-rounded',
+        'material-symbols:menu-rounded',
       ],
     },
   },
