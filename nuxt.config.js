@@ -26,7 +26,6 @@ export default defineNuxtConfig({
       // optional: list icons if you build names dynamically:
       icons: [
         'mdi:close',
-        'mdi:menu-rounded',
         'mdi:keyboard-arrow-down',
         'circle-flags:en',
         'circle-flags:bg',
