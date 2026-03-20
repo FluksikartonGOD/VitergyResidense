@@ -116,6 +116,7 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
     perspective: 2000px;
     transform-style: preserve-3d;
     width: 100%;
+    container-type: inline-size;
 }
 
 .perspective-container > * {
@@ -129,7 +130,7 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
     animation: cube-enter-anim var(--cube-duration) linear forwards;
     transform-style: preserve-3d;
     backface-visibility: hidden;
-    transform-origin: 50% 50% -50vw;
+    transform-origin: 50% 50% calc(-50cqw);
     z-index: 1;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     /* Fix for differing page heights: force uniform viewport height during transition */
@@ -141,7 +142,7 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
     animation: cube-leave-anim var(--cube-duration) linear forwards;
     transform-style: preserve-3d;
     backface-visibility: hidden;
-    transform-origin: 50% 50% -50vw;
+    transform-origin: 50% 50% calc(-50cqw);
     z-index: 1;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     /* Fix for differing page heights: force uniform viewport height during transition */
