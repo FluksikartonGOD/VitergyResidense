@@ -31,20 +31,19 @@
             </template>
             <AppDropdownDesktop
               v-else
-              class="h-full flex items-center justify-center"
+              class="h-full flex items-center justify-center text-primary"
             >
               <template #trigger="{ isHovered }">
-                <NuxtLink
-                  :to="localePath(link.to)"
-                  class="app-nav-link hover:text-primary font-medium inline-flex items-center gap-1 py-4 h-full flex items-center justify-center"
+                <span
+                  class="app-nav-link text-primary font-medium inline-flex items-center gap-1 py-4 h-full flex items-center justify-center"
                 >
                   {{ $t(link.labelKey) }}
                   <Icon
                     name="material-symbols:keyboard-arrow-down"
-                    class="w-4 h-4 transition-transform duration-200 text-primary"
+                    class="w-5 h-5 transition-transform duration-200"
                     :class="{ 'rotate-180': isHovered }"
                   />
-                </NuxtLink>
+                </span>
               </template>
               <template #content="{ close }">
                 <NuxtLink
@@ -52,7 +51,7 @@
                   :key="subLink.to"
                   @click="close"
                   :to="localePath(subLink.to)"
-                  class="app-nav-link px-4 py-3 hover:bg-gray-800 hover:text-primary transition-colors whitespace-nowrap"
+                  class="app-nav-link dropdown-link px-4 py-3 transition-colors whitespace-nowrap"
                 >
                   {{ $t(subLink.labelKey) }}{{ subLink.labelSuffix || '' }}
                 </NuxtLink>
@@ -113,9 +112,12 @@
               {{ $t(link.labelKey) }}
             </NuxtLink>
           </template>
-          <AppDropdownMobile v-else>
+          <AppDropdownMobile
+            v-else
+            class="text-primary"
+          >
             <template #trigger>
-              <span class="app-nav-mobile-link hover:text-primary">
+              <span class="app-nav-mobile-link text-primary">
                 {{ $t(link.labelKey) }}
               </span>
             </template>
@@ -130,7 +132,7 @@
                   }
                 "
                 :to="localePath(subLink.to)"
-                class="app-nav-mobile-link hover:text-primary pb-2"
+                class="app-nav-mobile-link dropdown-link w-full font-normal"
               >
                 {{ $t(subLink.labelKey) }}{{ subLink.labelSuffix || '' }}
               </NuxtLink>

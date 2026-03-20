@@ -11,7 +11,7 @@
     <div
       v-show="isHovered"
       @click.stop
-      class="absolute top-full left-0 bg-white min-w-[200px] flex flex-col overflow-hidden app-shadow z-50"
+      class="absolute top-full left-0 min-w-[200px] flex flex-col overflow-hidden app-shadow z-50"
     >
       <slot
         name="content"
