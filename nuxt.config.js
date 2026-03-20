@@ -57,6 +57,7 @@ export default defineNuxtConfig({
     },
   },
   app: {
+    pageTransition: { name: 'cube', mode: '' },
     // trailingSlash: 'append', // or 'remove',
     head: {
       charset: 'utf-8',

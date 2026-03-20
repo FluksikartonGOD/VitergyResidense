@@ -1,7 +1,7 @@
 <template>
-  <div class="app-layout">
+  <div class="app-layout overflow-x-hidden">
     <AppNav />
-    <main class="">
+    <main class="perspective-container">
       <slot />
     </main>
     <AppFooter />

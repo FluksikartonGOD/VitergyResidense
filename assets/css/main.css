@@ -9,10 +9,6 @@ body {
     font-weight: 300;
 }
 
-main {
-    min-height: 100vh;
-}
-
 .app-layout {
     padding-top: var(--nav-height);
 }
@@ -28,6 +24,7 @@ main {
 }
 
 .app-page {
+    min-height: 100vh;
     padding-top: 1rem;
     padding-bottom: 1rem;
 
@@ -111,4 +108,61 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
             /* @apply bg-black text-primary; */
         }
     }
+}
+
+:root {
+    --cube-duration: 1s;
+    --cube-push-back: -200px; /* Adjust this to change how far back it goes */
+}
+
+@screen lg {
+    :root {
+        --cube-duration: 1.5s;
+        --cube-push-back: -500px; /* Adjust this to change how far back it goes */
+    }
+}
+
+/* 3D Cube Transitions */
+.perspective-container {
+    display: grid;
+    perspective: 2000px;
+    transform-style: preserve-3d;
+    width: 100%;
+}
+
+.perspective-container > * {
+    grid-area: 1 / 1;
+    width: 100%;
+    /* Ensure pages aren't transparent during transition */
+    background-color: var(--page-bg, #FAFAFA); 
+}
+
+.cube-enter-active {
+    animation: cube-enter-anim var(--cube-duration) linear forwards;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    transform-origin: 50% 50% -50vw;
+    z-index: 1;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.cube-leave-active {
+    animation: cube-leave-anim var(--cube-duration) linear forwards;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    transform-origin: 50% 50% -50vw;
+    z-index: 1;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes cube-enter-anim {
+    0% { transform: translateZ(0) rotateY(90deg); }
+    50% { transform: translateZ(var(--cube-push-back)) rotateY(45deg); }
+    100% { transform: translateZ(0) rotateY(0deg); }
+}
+
+@keyframes cube-leave-anim {
+    0% { transform: translateZ(0) rotateY(0deg); }
+    50% { transform: translateZ(var(--cube-push-back)) rotateY(-45deg); }
+    100% { transform: translateZ(0) rotateY(-90deg); }
 }

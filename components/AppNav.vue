@@ -63,13 +63,13 @@
         <div class="hidden lg:flex items-center">
           <button
             @click="toggleLanguage"
-            class="flex items-center gap-2 hover:opacity-80 transition-opacity bg-primary px-3 py-1.5 rounded-full border border-primary"
+            class="flex items-center gap-2 hover:opacity-80 transition-opacity bg-primary px-3 py-1.5 rounded-full border border-primary app-shadow"
           >
             <Icon
               :name="langIcon"
               class="w-5 h-5 rounded-full object-cover"
             />
-            <span class="text-sm font-bold uppercase tracking-wider">
+            <span class="text-sm font-bold uppercase tracking-wider text-dark">
               {{ nextLang }}
             </span>
           </button>
