@@ -94,70 +94,74 @@
       </div>
     </div>
 
-    <aside
-      v-show="mobileOpened"
-      class="fixed top-[90px] h-[calc(100vh-90px)] left-0 right-0 bottom-0 bg-dark z-40 overflow-y-auto"
-    >
-      <div class="py-8 flex flex-col gap-3 text-center text-xl font-bold">
-        <template
-          v-for="link in mainNavLinks"
-          :key="link.to"
-        >
-          <template v-if="!link.hasSubmenu">
-            <NuxtLink
-              @click="mobileOpened = false"
-              :to="localePath(link.to)"
-              class="app-nav-mobile-link hover:text-primary"
-            >
-              {{ $t(link.labelKey) }}
-            </NuxtLink>
-          </template>
-          <AppDropdownMobile
-            v-else
-            class="text-primary"
+    <Transition name="mobile-menu">
+      <aside
+        v-show="mobileOpened"
+        class="fixed top-[90px] h-[calc(100vh-90px)] left-0 right-0 bottom-0 bg-dark z-40 overflow-y-auto overflow-x-hidden"
+      >
+        <div class="py-8 flex flex-col gap-3 text-center text-xl font-bold">
+          <template
+            v-for="(link, index) in mainNavLinks"
+            :key="link.to"
           >
-            <template #trigger>
-              <span class="app-nav-mobile-link text-primary">
-                {{ $t(link.labelKey) }}
-              </span>
-            </template>
-            <template #content="{ close }">
+            <template v-if="!link.hasSubmenu">
               <NuxtLink
-                v-for="(subLink, idx) in link.submenuItems"
-                :key="subLink.to"
-                @click="
-                  () => {
-                    mobileOpened = false
-                    close()
-                  }
-                "
-                :to="localePath(subLink.to)"
-                class="app-nav-mobile-link dropdown-link w-full font-normal"
+                @click="mobileOpened = false"
+                :to="localePath(link.to)"
+                class="app-nav-mobile-link hover:text-primary stagger-item"
+                :style="{ transitionDelay: `${index * 0.2}s` }"
               >
-                {{ $t(subLink.labelKey) }}{{ subLink.labelSuffix || '' }}
+                {{ $t(link.labelKey) }}
               </NuxtLink>
             </template>
-          </AppDropdownMobile>
-        </template>
-
-        <div class="mt-8 pt-8 flex justify-center">
-          <button
-            @click="toggleLanguage"
-            class="flex items-center gap-3 hover:opacity-80 transition-opacity bg-gray-800 px-4 py-3 rounded-full"
-          >
-            <Icon
-              :name="langIcon"
-              class="w-5 h-5"
-            />
-            <span
-              class="text-sm leading-none font-bold uppercase tracking-widest text-gray-200"
+            <AppDropdownMobile
+              v-else
+              class="text-primary stagger-item"
+              :style="{ transitionDelay: `${index * 0.2}s` }"
             >
-              {{ nextLang }}
-            </span>
-          </button>
+              <template #trigger>
+                <span class="app-nav-mobile-link text-primary">
+                  {{ $t(link.labelKey) }}
+                </span>
+              </template>
+              <template #content="{ close }">
+                <NuxtLink
+                  v-for="(subLink, idx) in link.submenuItems"
+                  :key="subLink.to"
+                  @click="
+                    () => {
+                      mobileOpened = false
+                      close()
+                    }
+                  "
+                  :to="localePath(subLink.to)"
+                  class="app-nav-mobile-link dropdown-link w-full font-normal"
+                >
+                  {{ $t(subLink.labelKey) }}{{ subLink.labelSuffix || '' }}
+                </NuxtLink>
+              </template>
+            </AppDropdownMobile>
+          </template>
+
+          <div class="mt-8 pt-8 flex justify-center stagger-item" :style="{ transitionDelay: `${mainNavLinks.length * 0.2}s` }">
+            <button
+              @click="toggleLanguage"
+              class="flex items-center gap-3 hover:opacity-80 transition-opacity bg-primary px-4 py-3 rounded-full"
+            >
+              <Icon
+                :name="langIcon"
+                class="w-5 h-5"
+              />
+              <span
+                class="text-sm leading-none font-bold uppercase tracking-widest text-dark"
+              >
+                {{ nextLang }}
+              </span>
+            </button>
+          </div>
         </div>
-      </div>
-    </aside>
+      </aside>
+    </Transition>
   </nav>
 </template>
 
@@ -167,6 +171,7 @@
 
   const { locale, setLocale } = useI18n()
   const localePath = useLocalePath()
+  const switchLocalePath = useSwitchLocalePath()
 
   const mobileOpened = ref(false)
 
@@ -176,7 +181,8 @@
   )
 
   const toggleLanguage = () => {
-    setLocale(nextLang.value)
     mobileOpened.value = false
+    const nextPath = switchLocalePath(nextLang.value)
+    window.location.href = nextPath
   }
 </script>

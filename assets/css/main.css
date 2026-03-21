@@ -73,29 +73,133 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
 
 /* Active Navigation Links styling */
 .app-nav .app-nav-link {
-    @apply px-6 border-b-4 border-transparent text-primary cursor-pointer;
+    @apply px-6 text-primary cursor-pointer;
+    position: relative;
+    transition: all 0.15s linear;
 
     &.dropdown-link {
         @apply bg-dark text-primary py-2 hover:bg-primary hover:text-dark;
     }
 }
-.app-nav .app-nav-link.router-link-active {
-    @apply border-primary;
+
+.app-nav .app-nav-link:not(.dropdown-link)::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 0px;
+    background-color: theme('colors.primary.DEFAULT');
+    transition: height 0.15s linear;
+}
+
+.app-nav .app-nav-link.router-link-active:not(.dropdown-link)::before {
+    height: 4px;
+}
+
+.app-nav .app-nav-link:not(.dropdown-link)::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid theme('colors.primary.DEFAULT');
+    opacity: 0;
+    transform: translate(-50%, 10px);
+    transition: all 0.15s linear;
+    pointer-events: none;
+}
+
+.app-nav .app-nav-link:hover:not(.dropdown-link)::after,
+.app-nav .app-nav-link.router-link-active:not(.dropdown-link)::after {
+    opacity: 1;
+    transform: translate(-50%, 0);
 }
 
 .app-nav .app-nav-mobile-link {
     @apply py-4 text-primary;
+    position: relative;
+    border-top: 2px solid transparent;
+    border-bottom: 2px solid transparent;
+    transition: all 0.15s linear;
 
     &.router-link-active {
         @apply bg-gray-800;
+        border-color: theme('colors.primary.DEFAULT');
     }
 
     &.dropdown-link {
-        @apply bg-black text-primary py-4;
+        @apply bg-dark text-primary py-4;
+        background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3));
         &.router-link-active {
             /* @apply bg-black text-primary; */
         }
     }
+}
+
+.app-nav .app-nav-mobile-link::before,
+.app-nav .app-nav-mobile-link::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    opacity: 0;
+    transition: all 0.15s linear;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    pointer-events: none;
+}
+
+.app-nav .app-nav-mobile-link::before {
+    left: 0;
+    transform: translate(-10px, -50%);
+    border-left: 6px solid theme('colors.primary.DEFAULT');
+}
+
+.app-nav .app-nav-mobile-link::after {
+    right: 0;
+    transform: translate(10px, -50%);
+    border-right: 6px solid theme('colors.primary.DEFAULT');
+}
+
+.app-nav .app-nav-mobile-link.router-link-active::before,
+.app-nav .app-nav-mobile-link.router-link-active::after {
+    opacity: 1;
+    transform: translate(0, -50%);
+}
+
+.mobile-menu-enter-active,
+.mobile-menu-leave-active {
+    transition: all 0.15s linear;
+}
+
+.mobile-menu-enter-from,
+.mobile-menu-leave-to {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.stagger-item {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.mobile-menu-enter-active .stagger-item {
+    transition-property: opacity, transform;
+    transition-duration: 0.4s;
+    transition-timing-function: ease;
+}
+
+.mobile-menu-leave-active .stagger-item {
+    transition-property: opacity, transform;
+    transition-duration: 0.15s;
+    transition-delay: 0s !important;
+}
+
+.mobile-menu-enter-from .stagger-item,
+.mobile-menu-leave-to .stagger-item {
+    opacity: 0;
+    transform: translateX(-20px);
 }
 
 :root {
