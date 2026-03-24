@@ -24,7 +24,7 @@
               v-else
               class="text-[1rem] text-center font-bold w-full"
             >
-              Изберете апартамент от сградата
+              КЛИКНЕТЕ И ИЗБЕРЕТЕ АПАРТАМЕНТ
             </h1>
           </Transition>
         </div>

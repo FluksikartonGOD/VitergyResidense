@@ -1,18 +1,7 @@
 <template>
   <div class="app-page building-page">
     <BuildingsOne v-model="selectedApartment" />
-    <div class="container flex flex-col mx-auto px-4 pb-4">
-      <ClientOnly>
-        <div class="relative inline-flex mx-auto">
-          <Transition name="slide-up">
-            <img
-              :src="selectedSkica"
-              class="w-full aspect-square max-w-[400px] mx-auto object-contain"
-              :key="selectedSkica"
-            />
-          </Transition>
-        </div>
-      </ClientOnly>
+    <div class="container flex flex-col mx-auto px-4 py-4 md:py-12">
       <h1 class="text-4xl font-bold mb-4 text-primary">lorem</h1>
       <p class="text-lg text-dark">
         Sed ut perspiciatis unde omnis iste natus error sit voluptatem
@@ -20,6 +9,15 @@
         illo inventore veritatis et quasi architecto beatae vitae dicta sunt
         explicabo.
       </p>
+      <div class="relative w-full max-w-[400px] mx-auto">
+        <Transition name="slide-up">
+          <img
+            :src="selectedSkica"
+            class="aspect-square w-full h-full h-auto object-contain"
+            :key="selectedSkica"
+          />
+        </Transition>
+      </div>
     </div>
   </div>
 </template>
