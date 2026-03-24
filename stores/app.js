@@ -11,6 +11,6 @@ export const useAppStore = defineStore('app', {
     },
     closeMobileMenu() {
       this.isMobileMenuOpen = false
-    }
-  }
+    },
+  },
 })

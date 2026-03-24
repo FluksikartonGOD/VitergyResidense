@@ -14,17 +14,17 @@
         >
           <Transition name="slide-up">
             <h1
-              v-if="!intro"
+              v-if="!intro && selectedApartment"
               class="text-[1.3rem] text-center font-bold w-full"
               :key="selectedApartment"
             >
-              {{ selectedApartment }}
+              {{ $t(selectedApartment) }}
             </h1>
             <h1
               v-else
               class="text-[1rem] text-center font-bold w-full"
             >
-              КЛИКНЕТЕ И ИЗБЕРЕТЕ АПАРТАМЕНТ
+              {{ $t('buildings.click_to_select_apartment') }}
             </h1>
           </Transition>
         </div>
@@ -35,19 +35,25 @@
 
 <script setup>
   import { ref, onMounted } from 'vue'
+  import { useBuildingsStore } from '~/stores/buildings'
 
-  const buildingMap = {
-    Building1Floor1Apartment1: 'Апартамент 1',
-    Building1Floor1Apartment2: 'Апартамент 2',
-  }
+  const store = useBuildingsStore()
+  const building = store.getBuildingById(1)
 
   const buildingWrapper = ref(null)
   const intro = ref(true)
   const selectedApartment = defineModel()
   const apartmentPaths = ref([])
 
-  const onApartmentSelect = (data) => {
-    selectedApartment.value = buildingMap[data]
+  const getApartmentByPathId = (pathId) => {
+    return building?.apartments.find((a) => a.pathId === pathId)
+  }
+
+  const onApartmentSelect = (pathId) => {
+    const apt = getApartmentByPathId(pathId)
+    if (apt) {
+      selectedApartment.value = apt.nameKey
+    }
   }
 
   const onApartmentClick = (apartment) => {

@@ -62,7 +62,7 @@ body {
 }
 
 .shadow-card-dark:hover {
-    box-shadow: 0 0 20px 5px #0c0c0c;
+    box-shadow: 0 0 20px 10px rgba(203, 242, 48, 0.2);
 }
 
 /* Make calendar icon white in dark mode */

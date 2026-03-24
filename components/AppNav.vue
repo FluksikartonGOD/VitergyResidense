@@ -171,7 +171,6 @@
 
   const { locale, setLocale } = useI18n()
   const localePath = useLocalePath()
-  const switchLocalePath = useSwitchLocalePath()
 
   const mobileOpened = ref(false)
 
@@ -182,7 +181,12 @@
 
   const toggleLanguage = () => {
     mobileOpened.value = false
-    const nextPath = switchLocalePath(nextLang.value)
+    const nextPath = localePath('/', nextLang.value)
+    
+    // Explicitly update the cookie so Nuxt doesn't redirect back to EN when loading the default (BG) route
+    const i18nCookie = useCookie('i18n_redirected')
+    i18nCookie.value = nextLang.value
+    
     window.location.href = nextPath
   }
 </script>

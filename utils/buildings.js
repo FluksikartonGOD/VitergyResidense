@@ -1,99 +1,119 @@
+const generateMockApartments = (bId) => [
+  {
+    id: 1,
+    pathId: `Building${bId}Floor1Apartment1`,
+    nameKey: `building_${bId}_floor_1_apartment_1_name`,
+    titleKey: `building_${bId}_floor_1_apartment_1_title`,
+    descriptionKey: `building_${bId}_floor_1_apartment_1_description`,
+    sketch: '/images/test-skica.jpg',
+    floor: 1,
+    main_features: [
+      { nameKey: 'total_area', descriptionKey: '200.00 м²' },
+      { nameKey: 'common_area', descriptionKey: '20.00 м²' },
+      { nameKey: 'residential_area', descriptionKey: '220.00 м²' },
+    ],
+    additional_features: [
+      { nameKey: 'Feature 1', descriptionKey: 'Description for feature 1' },
+      { nameKey: 'Feature 2', descriptionKey: 'Description for feature 2' },
+    ],
+    details: [
+      { nameKey: 'Detail 1', descriptionKey: 'Description for detail 1' },
+      { nameKey: 'Detail 2', descriptionKey: 'Description for detail 2' },
+    ],
+  },
+  {
+    id: 2,
+    pathId: `Building${bId}Floor1Apartment2`,
+    nameKey: `building_${bId}_floor_1_apartment_2_name`,
+    titleKey: `building_${bId}_floor_1_apartment_2_title`,
+    descriptionKey: `building_${bId}_floor_1_apartment_2_description`,
+    sketch: '/images/test-skica-2.jpg',
+    floor: 1,
+    main_features: [
+      { nameKey: 'total_area', descriptionKey: '200.00 м²' },
+      { nameKey: 'common_area', descriptionKey: '20.00 м²' },
+      { nameKey: 'residential_area', descriptionKey: '220.00 м²' },
+    ],
+    additional_features: [
+      { nameKey: 'Feature 1', descriptionKey: 'Description for feature 1' },
+      { nameKey: 'Feature 2', descriptionKey: 'Description for feature 2' },
+    ],
+    details: [
+      { nameKey: 'Detail 1', descriptionKey: 'Description for detail 1' },
+      { nameKey: 'Detail 2', descriptionKey: 'Description for detail 2' },
+    ],
+  },
+]
+
 export const buildingsData = [
   {
     id: 1,
-    nameKey: 'Building 1',
-    titleKey: 'Title for building 1',
-    descriptionKey: 'Description for building 1',
-    image: '/images/building-1.jpg',
-    completed: 10, // this will be displayed as a percentage
+    nameKey: 'building_1_name',
+    titleKey: 'building_1_title',
+    descriptionKey: 'building_1_description',
+    image: '/images/full-res-1.webp',
+    completed: 10,
     floors: 3,
-    apartments: [
-      {
-        id: 1,
-        pathId: 'Building1Floor1Apartment1',
-        nameKey: 'Apartment 1',
-        titleKey: 'Title for apartment 1',
-        descriptionKey: 'Description for apartment 1',
-        sketch: '/images/test-skica.jpg',
-        floor: 1,
-        main_features: [
-          {
-            nameKey: 'total_area',
-            descriptionKey: '200.00 м²',
-          },
-          {
-            nameKey: 'common_area',
-            descriptionKey: '20.00 м²',
-          },
-          {
-            nameKey: 'residential_area',
-            descriptionKey: '220.00 м²',
-          },
-        ],
-        additional_features: [
-          {
-            nameKey: 'Feature 1',
-            descriptionKey: 'Description for feature 1',
-          },
-          {
-            nameKey: 'Feature 2',
-            descriptionKey: 'Description for feature 2',
-          },
-        ],
-        details: [
-          {
-            nameKey: 'Detail 1',
-            descriptionKey: 'Description for detail 1',
-          },
-          {
-            nameKey: 'Detail 2',
-            descriptionKey: 'Description for detail 2',
-          },
-        ],
-      },
-      {
-        id: 2,
-        pathId: 'Building1Floor1Apartment2',
-        nameKey: 'Apartment 2',
-        titleKey: 'Title for apartment 2',
-        descriptionKey: 'Description for apartment 2',
-        sketch: '/images/test-skica-2.jpg',
-        floor: 1,
-        main_features: [
-          {
-            nameKey: 'total_area',
-            descriptionKey: '200.00 м²',
-          },
-          {
-            nameKey: 'common_area',
-            descriptionKey: '20.00 м²',
-          },
-          {
-            nameKey: 'residential_area',
-            descriptionKey: '220.00 м²',
-          },
-        ],
-        additional_features: [
-          {
-            nameKey: 'Feature 1',
-            descriptionKey: 'Description for feature 1',
-          },
-          {
-            nameKey: 'Feature 2',
-            descriptionKey: 'Description for feature 2',
-          },
-        ],
-        details: [
-          {
-            nameKey: 'Detail 1',
-            descriptionKey: 'Description for detail 1',
-          },
-          {
-            nameKey: 'Detail 2',
-            descriptionKey: 'Description for detail 2',
-          },
-        ],
-      },
-    ],
+    apartments: generateMockApartments(1),
+  },
+  {
+    id: 2,
+    nameKey: 'building_2_name',
+    titleKey: 'building_2_title',
+    descriptionKey: 'building_2_description',
+    image: '/images/full-res-1.webp',
+    completed: 20,
+    floors: 3,
+    apartments: generateMockApartments(2),
+  },
+  {
+    id: 3,
+    nameKey: 'building_3_name',
+    titleKey: 'building_3_title',
+    descriptionKey: 'building_3_description',
+    image: '/images/full-res-1.webp',
+    completed: 30,
+    floors: 3,
+    apartments: generateMockApartments(3),
+  },
+  {
+    id: 4,
+    nameKey: 'building_4_name',
+    titleKey: 'building_4_title',
+    descriptionKey: 'building_4_description',
+    image: '/images/full-res-1.webp',
+    completed: 40,
+    floors: 3,
+    apartments: generateMockApartments(4),
+  },
+  {
+    id: 5,
+    nameKey: 'building_5_name',
+    titleKey: 'building_5_title',
+    descriptionKey: 'building_5_description',
+    image: '/images/full-res-1.webp',
+    completed: 50,
+    floors: 3,
+    apartments: generateMockApartments(5),
+  },
+  {
+    id: 6,
+    nameKey: 'building_6_name',
+    titleKey: 'building_6_title',
+    descriptionKey: 'building_6_description',
+    image: '/images/full-res-1.webp',
+    completed: 60,
+    floors: 3,
+    apartments: generateMockApartments(6),
+  },
+  {
+    id: 7,
+    nameKey: 'building_7_name',
+    titleKey: 'building_7_title',
+    descriptionKey: 'building_7_description',
+    image: '/images/full-res-1.webp',
+    completed: 70,
+    floors: 3,
+    apartments: generateMockApartments(7),
   },
 ]

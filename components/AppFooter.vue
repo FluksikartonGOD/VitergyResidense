@@ -50,7 +50,7 @@
           </h3>
           <ul class="space-y-3">
             <li
-              v-for="subLink in mainNavLinks.find((l) => l.to === '/sgradi')
+              v-for="subLink in mainNavLinks.find((l) => l.to === '/buildings')
                 ?.submenuItems"
               :key="subLink.to"
             >
